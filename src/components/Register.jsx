@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Film, User, Mail, Lock } from 'lucide-react';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '', password2: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -18,10 +20,10 @@ const Register = () => {
     }
 
     try {
-      await axios.post('http://localhost:8000/api/auth/register/', form);
+      await axios.post(`${apiUrl}/api/auth/register/`, form);
 
       // 🔁 Connexion auto après inscription
-      const res = await axios.post('http://localhost:8000/api/auth/login/', {
+      const res = await axios.post(`${apiUrl}/api/auth/login/`, {
         username: form.username,
         password: form.password,
       });

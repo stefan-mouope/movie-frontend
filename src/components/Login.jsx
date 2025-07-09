@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Film, User, Lock } from 'lucide-react';
 
+// 🔧 URL dynamique depuis .env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +15,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/login/', {
+      const res = await axios.post(`${apiUrl}/api/auth/login/`, {
         username,
         password,
       });
@@ -28,18 +31,14 @@ const Login = () => {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center bg-black overflow-hidden">
-      {/* Background image avec overlay */}
+      {/* ... pas de changement ici, tout est esthétique ... */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1489599243109-11fd19ea5fe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
         }}
       />
-      
-      {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-900/50 to-black/80" />
-      
-      {/* Particles effect */}
       <div className="absolute inset-0 opacity-30">
         {[...Array(50)].map((_, i) => (
           <div
@@ -55,10 +54,8 @@ const Login = () => {
         ))}
       </div>
 
-      {/* Form container */}
       <div className="relative z-10 w-full max-w-md p-8">
         <div className="bg-black/60 backdrop-blur-lg rounded-2xl border border-white/20 p-8 shadow-2xl">
-          {/* Logo et titre */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mb-4">
               <Film className="w-8 h-8 text-white" />
@@ -68,7 +65,6 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
-            {/* Username input */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <User className="h-5 w-5 text-gray-400" />
@@ -83,7 +79,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Password input */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Lock className="h-5 w-5 text-gray-400" />
@@ -105,7 +100,6 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Submit button */}
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 transform hover:scale-105"
@@ -113,7 +107,6 @@ const Login = () => {
               Se connecter
             </button>
 
-            {/* Register link */}
             <div className="text-center">
               <p className="text-gray-300">
                 Vous n'avez pas de compte ?{' '}

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Recommendations from './Recommendations.jsx';
 
+const apiUrl = import.meta.env.VITE_API_URL; // 🔥 Ajouté
+
 function RecommendationsPage() {
   const { movieId } = useParams();
   const [recommendations, setRecommendations] = useState([]);
@@ -12,7 +14,7 @@ function RecommendationsPage() {
     const fetchRecommendations = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:8000/api/recommend/${movieId}/`);
+        const response = await fetch(`${apiUrl}/api/recommend/${movieId}/`);
         const data = await response.json();
         if (response.ok) {
           setRecommendations(data);
