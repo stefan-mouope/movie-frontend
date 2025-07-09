@@ -33,8 +33,10 @@ const Register = () => {
 
       navigate('/dashboard'); // redirection immédiate
     } catch (err) {
+      console.error("Erreur d'inscription :", err.response?.data || err.message);
       alert("Erreur lors de l'inscription");
     }
+    
   };
 
   return (
