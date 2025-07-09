@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
 import MovieListPage from './components/MovieListPage.jsx';
 import RecommendationsPage from './components/RecommendationsPage.jsx';
@@ -7,6 +7,9 @@ import { GenreStats } from './components/GenreStats.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+
+// 💡 On récupère l'URL de l'API depuis .env
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -20,7 +23,7 @@ function App() {
 
   const fetchMovies = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/movies/', {
+      const response = await fetch(`${apiUrl}/api/movies/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
         },
@@ -36,7 +39,7 @@ function App() {
   const handleAddMovie = async (newMovie) => {
     try {
       const genresArray = newMovie.genres.split(',').map(g => g.trim());
-      const response = await fetch('http://localhost:8000/api/movies/', {
+      const response = await fetch(`${apiUrl}/api/movies/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,11 +70,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Route par défaut : page de connexion */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* Routes protégées */}
         <Route
           path="/dashboard"
           element={
