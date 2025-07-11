@@ -23,10 +23,10 @@ const Register = () => {
     setIsLoading(true) 
 
     try {
-      await axios.post(`${apiUrl}/api/auth/register/`, form);
+      await axios.post(`${apiUrl}/api/register/`, form);
 
       // 🔁 Connexion auto après inscription
-      const res = await axios.post(`${apiUrl}/api/auth/login/`, {
+      const res = await axios.post(`${apiUrl}/api/login/`, {
         username: form.username,
         password: form.password,
       });
