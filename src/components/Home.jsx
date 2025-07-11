@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import AddMovieForm from './AddMovieForm.jsx';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function Home({ onAddMovie, error, fetchMovies }) {
   useEffect(() => {

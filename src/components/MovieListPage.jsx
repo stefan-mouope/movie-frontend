@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MovieList from './MovieList.jsx';
 
 function MovieListPage({ movies, error, setError, fetchMovies }) {
+  useEffect(() => {
+    if (typeof fetchMovies === 'function') {
+      fetchMovies();
+    }
+  }, []);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredMovies = movies.filter(
-    movie =>
-      movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      movie.genres.some(genre => genre.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const filteredMovies = Array.isArray(movies)
+  ? movies.filter(
+      movie =>
+        movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        movie.genres.some(genre =>
+          genre.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    )
+  : [];
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900">
