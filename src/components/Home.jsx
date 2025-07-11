@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import AddMovieForm from './AddMovieForm.jsx';
 
+import { useEffect } from 'react';
+
 function Home({ onAddMovie, error, fetchMovies }) {
   useEffect(() => {
     if (localStorage.getItem('access') && typeof fetchMovies === 'function') {
