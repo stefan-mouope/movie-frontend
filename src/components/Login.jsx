@@ -111,7 +111,7 @@ const Login = () => {
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 transform hover:scale-105"
               disabled={isLoading}
             >
-              {isLoading ? "Chargement": "Se connecter"}
+              {isLoading ? "Chargement....": "Se connecter"}
             </button>
 
             <div className="text-center">
