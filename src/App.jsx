@@ -16,10 +16,15 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (localStorage.getItem('access')) {
+    const token = localStorage.getItem('access');
+    const justLoggedIn = localStorage.getItem('justLoggedIn');
+  
+    if (token && (movies.length === 0 || justLoggedIn)) {
       fetchMovies();
+      localStorage.removeItem('justLoggedIn');
     }
   }, []);
+  
 
   const fetchMovies = async () => {
     try {

@@ -33,6 +33,7 @@ const Register = () => {
 
       localStorage.setItem('access', res.data.access);
       localStorage.setItem('refresh', res.data.refresh);
+      localStorage.setItem('justLoggedIn', 'true');
 
       navigate('/dashboard'); // redirection immédiate
     } catch (err) {
