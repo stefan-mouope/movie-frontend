@@ -16,15 +16,10 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('access');
-    const justLoggedIn = localStorage.getItem('justLoggedIn');
-  
-    if (token && (movies.length === 0 || justLoggedIn)) {
+    if (localStorage.getItem('access')) {
       fetchMovies();
-      localStorage.removeItem('justLoggedIn');
     }
   }, []);
-  
 
   const fetchMovies = async () => {
     try {
@@ -81,7 +76,10 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-              <Home onAddMovie={handleAddMovie} error={error} />
+              <Home onAddMovie={handleAddMovie} error={error} 
+              fetchMovies={fetchMovies}
+              
+              />
             </PrivateRoute>
           }
         />
