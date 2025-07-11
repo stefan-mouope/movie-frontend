@@ -41,7 +41,7 @@ function RecommendationsPage() {
             🎯 Recommandations Personnalisées
           </h1>
           <Link
-            to="/movies"
+            to="/dashboard"
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-colors duration-300"
           >
             ← Retour aux Films
