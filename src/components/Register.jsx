@@ -9,6 +9,7 @@ const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '', password2: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  cont [isLoading, setIsLoading]= useState(false) 
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -18,6 +19,8 @@ const Register = () => {
       alert("Les mots de passe ne correspondent pas.");
       return;
     }
+
+    setIsLoading(true) 
 
     try {
       await axios.post(`${apiUrl}/api/auth/register/`, form);
@@ -35,6 +38,9 @@ const Register = () => {
     } catch (err) {
       console.error("Erreur d'inscription :", err.response?.data || err.message);
       alert("Erreur lors de l'inscription");
+    }
+    finally{
+      setIsLoading(false) 
     }
     
   };
@@ -159,8 +165,10 @@ const Register = () => {
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 transform hover:scale-105"
+              disabled={isLoading}
             >
-              S'inscrire
+              {isLoading? "Chargement...." : "S'inscrire"}
+              
             </button>
 
             {/* Login link */}
