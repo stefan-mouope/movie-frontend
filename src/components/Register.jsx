@@ -9,7 +9,7 @@ const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '', password2: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  cont [isLoading, setIsLoading]= useState(false) 
+  const [isLoading, setIsLoading]= useState(false) 
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
